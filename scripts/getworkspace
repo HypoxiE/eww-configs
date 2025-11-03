@@ -1,5 +1,0 @@
-#!/bin/sh
-
-active_workspace=$(hyprctl activewindow | grep "workspace:" | awk '{print $2}' )
-
-echo ${active_workspace}

@@ -2,22 +2,58 @@
 (include "vars.yuck")
 
 ; one main bar
-(defwindow main_bar
-  :monitor 0
-  :windowtype "dock"
-  :geometry (geometry :x "0%"
-                      :y "0px"
-                      :width "100%"
-                      :height "40px"
-                      :anchor "top center")
-  :reserve (struts :side "top" :distance "4%")
-  (main_bar))
+;(defwindow main_bar
+;	:monitor 0
+;	:windowtype "dock"
+;	:geometry (geometry :x "0%"
+;						:y "0px"
+;						:width "100%"
+;						:height "40px"
+;						:anchor "top center")
+;	:reserve (struts :side "top" :distance "4%")
+;(main_bar))
 
-(defwidget main_bar []
-  (centerbox :orientation "h"
-    :class "mainbox"
-    (workspaces)
-    (metrics)
-    (time_bar)))
+;(defwidget main_bar []
+;(centerbox :orientation "h"
+;:class "mainbox"
+;(workspaces)
+;(metrics)
+;(time)))
+
+(defwindow workspaces_bar
+	:monitor 0
+	:windowtype "dock"
+	:geometry (geometry :x "0%"
+						:y "0px"
+						:width "20%"
+						:height "40px"
+						:anchor "top left")
+	:reserve (struts :side "top" :distance "4%")
+	(box :class "mainbox" (workspaces))
+)
+
+(defwindow metrics_bar
+	:monitor 0
+	:windowtype "dock"
+	:geometry (geometry :x "0%"
+						:y "0px"
+						:width "7%"
+						:height "40px"
+						:anchor "top center")
+	:reserve (struts :side "top" :distance "4%")
+	(box :class "mainbox" (metrics))
+)
+
+(defwindow time_bar
+	:monitor 0
+	:windowtype "dock"
+	:geometry (geometry :x "0%"
+						:y "0px"
+						:width "7%"
+						:height "40px"
+						:anchor "top right")
+	:reserve (struts :side "top" :distance "4%")
+	(box :class "mainbox" (time))
+)
 
 

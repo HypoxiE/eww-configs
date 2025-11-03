@@ -4,4 +4,7 @@
 (defpoll memory :interval "1s" :initial "0"
   "scripts/getmem") ; Необходимо для экстренного выключения браузера в случае необходимости
 
+(defpoll wifi :interval "1s" :initial '{"state": "disconnected", "ssid": "", "rssi": -100, "quality": 0}'
+  "scripts/getnetwork")
+
 (defvar active_workspace 1)

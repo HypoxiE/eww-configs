@@ -1,0 +1,17 @@
+#!/bin/sh
+
+STATE=$(iwctl station wlan0 show | grep 'State' | awk '{print $2}')
+SSID=$(iwctl station wlan0 show | grep 'Connected network' | awk '{print $3}')
+RSSI=$(iwctl station wlan0 show | grep 'RSSI' | head -n1 | awk '{print $2}')
+
+if [ -z "$RSSI" ]; then
+	QUALITY=0
+else
+	# нормализация RSSI в диапазон 0–100
+	QUALITY=$(( 2 * (RSSI + 90) ))
+	# ограничим диапазон
+	if [ $QUALITY -gt 100 ]; then QUALITY=100; fi
+	if [ $QUALITY -lt 0 ]; then QUALITY=0; fi
+fi
+
+printf '{"state": "%s", "ssid": "%s", "rssi": "%s", "quality": %d}\n' "$STATE" "$SSID" "$RSSI" "$QUALITY"

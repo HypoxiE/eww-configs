@@ -1,93 +1,115 @@
-(defwidget time_bar []
-    (box :class "time"
-       :space-evenly false
-       :halign "end"
-      (label :text time)
-    )
+(defwidget time []
+		(box :class "time"
+			 :space-evenly false
+			 :halign "end"
+			(label :text time)
+		)
 )
 
 (defwidget metrics []
 	(centerbox :orientation "h"
-    (overlay
-      :halign "end"
-      (circular-progress
-        :class "bg-circular"
-        :value 100
-        :thickness "18.4"
-        :width 40
-      )
-      (box :halign "start" :width 40 (label :class "icon" :text ""))
-      (circular-progress
-        :class "memory-circular"
-        :value {EWW_DISK["/"].used_perc}
-        ;:tooltip "using ${EWW_DISK["/"].used_perc}% disk"
-        :thickness 5
-        :width 40
-        :start-at 75
-      )
+		(centerbox :orientation "h"
+			:halign "start"
+			(overlay
+				:halign "end"
+				(circular-progress
+					:class "bg-circular"
+					:value 100
+					:thickness "18.4"
+					:width 40
+				)
+				(box :halign "start" :width 40 (label :class "icon" :text ""))
+				(circular-progress
+					:class "memory-circular"
+					:value {EWW_DISK["/"].used_perc}
+					;:tooltip "using ${EWW_DISK["/"].used_perc}% disk"
+					:thickness 5
+					:width 40
+					:start-at 75
+				)
+			)
+			(overlay
+				:halign "center"
+				(circular-progress
+					:class "bg-circular"
+					:value 100
+					:thickness "18.4"
+					:width 40
+				)
+				(box :halign "start" :width 40 (label :class "icon" :text ""))
+				(circular-progress
+					:class "memory-circular"
+					:value {EWW_RAM.used_mem_perc}
+					;:tooltip "using ${memory}% ram"
+					:thickness 5
+					:width 40
+					:start-at 75
+				)
+			)
+			(overlay
+				:halign "end"
+				(circular-progress
+					:class "bg-circular"
+					:value 100
+					:thickness "18.4"
+					:width 40
+				)
+				(box :halign "start" :width 40 (label :class "icon" :text "${EWW_BATTERY.BATT.status == 'Charging' ? '' : ''}"))
+				(circular-progress
+					:class "memory-circular"
+					:value {EWW_BATTERY.BATT.capacity}
+					;:tooltip "${EWW_BATTERY.BATT.status}"
+					:thickness 5
+					:width 40
+					:start-at 75
+				)
+			)
 		)
-    (overlay
-      :halign "center"
-      (circular-progress
-        :class "bg-circular"
-        :value 100
-        :thickness "18.4"
-        :width 40
-      )
-      (box :halign "start" :width 40 (label :class "icon" :text ""))
-      (circular-progress
-        :class "memory-circular"
-        :value {EWW_RAM.used_mem_perc}
-        ;:tooltip "using ${memory}% ram"
-        :thickness 5
-        :width 40
-        :start-at 75
-      )
+		(overlay
+			:halign "end"
+			(circular-progress
+				:class "bg-circular"
+				:value 100
+				:thickness "18.4"
+				:width 40
+			)
+			(box :halign "start" :width 40 (label :class "icon" :text {wifi.state == "connected" ? "" : ""}))
+			(circular-progress
+				:class "memory-circular"
+				:value {wifi.quality}
+				:tooltip "${wifi.ssid}"
+				:thickness 5
+				:width 40
+				:start-at 75
+			)
 		)
-    (overlay
-      :halign "end"
-      (circular-progress
-        :class "bg-circular"
-        :value 100
-        :thickness "18.4"
-        :width 40
-      )
-      (box :halign "start" :width 40 (label :class "icon" :text "${EWW_BATTERY.BATT.status == 'Charging' ? '' : ''}"))
-      (circular-progress
-        :class "memory-circular"
-        :value {EWW_BATTERY.BATT.capacity}
-        ;:tooltip "${EWW_BATTERY.BATT.status}"
-        :thickness 5
-        :width 40
-        :start-at 75
-      )
-		)
+		(box)
 	)
 )
 
 
 (defwidget workspaces []
-  (box :class "workspaces"
-       :orientation "h"
-       :space-evenly true
-       :halign "start"
-       :spacing 10
-      ;(button :onclick "" "${colors[0]}")
-    (workspace-button :num 1)
-    (workspace-button :num 2)
-    (workspace-button :num 3)
-    (workspace-button :num 4)
-    (workspace-button :num 5)
-    (workspace-button :num 6)
-    (workspace-button :num 7)
-    (workspace-button :num 8)
-    (workspace-button :num 9)
-  )
+	(box :class "workspaces"
+			 :orientation "h"
+			 :space-evenly true
+			 :halign "start"
+			 :spacing 10
+			;(button :onclick "" "${colors[0]}")
+		(workspace-button :num 1)
+		(workspace-button :num 2)
+		(workspace-button :num 3)
+		(workspace-button :num 4)
+		(workspace-button :num 5)
+		(workspace-button :num 6)
+		(workspace-button :num 7)
+		(workspace-button :num 8)
+		(workspace-button :num 9)
+	)
 )
 (defwidget workspace-button [num]
-  (button
-    :class "${(active_workspace == num) ? 'ws-button active' : 'ws-button'}"
-    :onclick "${(active_workspace != num) ? 'hyprctl dispatch workspace ${num}' : ''}"
-    num
-  )
+	(button
+		:class "${(active_workspace == num) ? 'ws-button active' : 'ws-button'}"
+		:onclick "${(active_workspace != num) ? 'hyprctl dispatch workspace ${num}' : ''}"
+		num
+	)
 )
