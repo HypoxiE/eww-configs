@@ -1,0 +1,10 @@
+#!/bin/sh
+
+memory_percent=$(free | awk 'NR==2{printf "%.0f", ($3)/$2 * 100}')
+
+if ((memory_percent > 90)); then
+    dunstify --action="replyAction,reply" "memori > 90% ($memory_percent)"
+    killall firefox
+fi
+
+echo ${memory_percent:-0}

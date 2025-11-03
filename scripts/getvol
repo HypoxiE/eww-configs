@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if command -v pactl &>/dev/null; then
+    # Получаем состояние mute и громкость
+    sink_info=$(pactl get-sink-mute @DEFAULT_SINK@)
+    if echo "$sink_info" | grep -q "Mute: yes"; then
+        echo 0
+    else
+        # Получаем громкость и извлекаем первый процент
+        volume=$(pactl get-sink-volume @DEFAULT_SINK@ | head -n1 | grep -oP '\d+%' | head -n1 | sed 's/%//')
+        echo "$volume"
+    fi
+else
+    # Fallback на amixer если pactl не найден
+    amixer -D pulse sget Master | awk -F '[^0-9]+' '/Left:/{print $3}'
+fi

@@ -1,0 +1,71 @@
+* {
+  all: unset;
+}
+
+@import "colors.scss";
+
+.mainbox {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+  border-width: 2px;
+  border-style: solid;
+  border-color: $text_color;
+
+  padding: 4px 8px;
+  background-color: $main_color;
+  color: $text_color;
+  outline: 3px solid transparent;
+  outline-offset: -3px;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+
+}
+
+.ws-button {
+  background-color: $secondary_color;
+  color: $secondary_color;
+  border-radius: 50%;
+
+  border-width: 2px;
+  border-style: solid;
+  border-color: $text_color;
+
+  padding: 0.5em 0.85em;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &.active {
+    background-color: $main_color;
+    color: $text_color;
+    border-width: 0px;
+  }
+
+  &:hover {
+    background-color: $text_color;
+    color: $main_color;
+
+    &.active {
+      border-width: 2px;
+      background-color: $main_color;
+      color: $text_color;
+    }
+  }
+}
+
+.bg-circular {
+  color: $secondary_color;
+  background-color: $text_color;
+}
+
+
+.memory-circular
+{
+  color: $text_color;
+  background-color: $secondary_color;
+  border-radius: 10px;
+}
+
+.icon {
+  font: 20px "Material Symbols Outlined";
+  color: $icons_color;
+}

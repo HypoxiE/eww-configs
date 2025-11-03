@@ -1,0 +1,7 @@
+(defpoll time :interval "10s"
+  "LC_TIME=ru_RU.UTF-8 date '+%H:%M %d.%m (%a)'")
+
+(defpoll memory :interval "1s" :initial "0"
+  "scripts/getmem") ; Необходимо для экстренного выключения браузера в случае необходимости
+
+(defvar active_workspace 1)
