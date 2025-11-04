@@ -8,3 +8,5 @@
   "scripts/getnetwork")
 
 (defvar active_workspace 1)
+
+(defvar disks_is_opened false)

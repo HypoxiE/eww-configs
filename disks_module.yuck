@@ -1,0 +1,15 @@
+(defpoll disks :interval "1s" :initial "" "scripts/getusb")
+
+(defwindow disks_bar
+	:monitor 0
+	:windowtype "dock"
+	:geometry (geometry :x "0%"
+						:y "60px"
+						:width "10%"
+						:height "0px"
+						:anchor "top center")
+	:stacking "overlay"
+	(box :class "disks-pannel"
+		(literal :content disks)
+	)
+)

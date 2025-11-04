@@ -1,6 +1,8 @@
 (include "widgets.yuck")
 (include "vars.yuck")
 
+(include "disks_module.yuck")
+
 ; one main bar
 (defwindow main_bar
 	:monitor 0

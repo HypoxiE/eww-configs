@@ -12,10 +12,9 @@ IFS=$'\n' read -rd '' -a lines <<<"$DEVICES"
 
 buttons="
 (box
-	:class \"workspaces\"
-	:orientation \"h\"
+	:orientation \"v\"
 	:space-evenly true
-	:halign \"start\"
+	:halign \"fill\"
 	:spacing 10
 	
 "
@@ -30,15 +29,18 @@ for line in "${lines[@]}"; do
 
 	buttons+="
 	(button
-		:class \"ws-button\"
-		:onclick \"udiskie-umount -e $device\"
-		:tooltip \"$label\"
-		$i
+		:class \"dsk-button\"
+		:timeout \"1s\"
+		:onrightclick \"udiskie-umount $device && udiskie-umount -e $device && eww update disks_is_opened=false && eww close disks_bar\"
+		:onclick \"echo '$path' | wl-copy && eww update disks_is_opened=false && eww close disks_bar\"
+		\"$label\"
 	)
 	"
 	#echo "Device: $device, Label: $label, Path: $path"
 done
 buttons+=")"
+
+[[ $i -eq 0 ]] && { echo "(box (label :text \"Nothing\"))"; exit; }
 
 
 echo $buttons

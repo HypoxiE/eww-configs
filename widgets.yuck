@@ -1,20 +1,3 @@
-(defvar disks_opened true)
-(defpoll disks :interval "1s" :initial "" "scripts/getusb")
-
-(defwidget disks-panel []
-	(box
-		:orientation "v"
-		:class "disks-panel"
-		(literal :content disks)
-	)
-)
-(defwidget main []
-	(box
-	:orientation "v"
-	:space-evenly false
-	(box :visible disks_opened (disks-panel)))
-)
-
 (defwidget time []
 	(box :orientation "h"
 		(box :class "time"
@@ -27,7 +10,7 @@
 (defwidget metrics []
 	(box :orientation "h"
 		:halign "start"
-		(eventbox :onclick "eww update disks_opened=!disks_opened"
+		(eventbox :onclick "eww ${disks_is_opened == false ? 'open' : 'close'} disks_bar && eww update disks_is_opened=${disks_is_opened == true ? false : true}"
 			(overlay
 				(bg_circulars)
 				(icon :symbol "")
