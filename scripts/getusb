@@ -1,0 +1,57 @@
+#!/bin/sh
+
+DEVICES=$(udiskie-info -a -o "{{\"device\": \"{device_presentation}\", \"mounted\": {is_mounted}, \"label\": \"{id_label}\", \"paths\": \"{mount_path}\"}}" | grep "\"mounted\": True") 
+
+DEVICES=$(echo "$DEVICES" | sed -e 's/False/false/g' -e 's/True/true/g')
+
+#echo "$DEVICES"
+
+#echo
+
+IFS=$'\n' read -rd '' -a lines <<<"$DEVICES"
+
+buttons="
+(box
+	:class \"workspaces\"
+	:orientation \"h\"
+	:space-evenly true
+	:halign \"start\"
+	:spacing 10
+	
+"
+
+i=0
+for line in "${lines[@]}"; do
+	((i++))
+	device=$(echo "$line" | jq -r '.device')
+	label=$(echo "$line" | jq -r '.label')
+	path=$(echo "$line" | jq -r '.paths')
+
+
+	buttons+="
+	(button
+		:class \"ws-button\"
+		:onclick \"udiskie-umount -e $device\"
+		:tooltip \"$label\"
+		$i
+	)
+	"
+	#echo "Device: $device, Label: $label, Path: $path"
+done
+buttons+=")"
+
+
+echo $buttons
+
+
+
+#echo "$DEVICES" | while IFS= read -r line; do
+#    echo "Processing: $line"
+#done
+
+#$DEVICES | sed "s/'/\"/g; s/True/true/g; s/False/false/g" | while read -r line; do
+#    device=$(echo "$line" | jq -r '.device')
+#    label=$(echo "$line" | jq -r '.label')
+#    path=$(echo "$line" | jq -r '.paths')
+#    echo "Device: $device, Label: $label, Path: $path"
+#done

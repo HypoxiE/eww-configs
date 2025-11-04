@@ -1,8 +1,10 @@
 #!/bin/sh
 
-STATE=$(iwctl station wlan0 show | grep 'State' | awk '{print $2}')
-SSID=$(iwctl station wlan0 show | grep 'Connected network' | awk '{print $3}')
-RSSI=$(iwctl station wlan0 show | grep 'RSSI' | head -n1 | awk '{print $2}')
+DEVICE=$(iwctl device list | grep wlan | awk '{print $2; exit}')
+
+STATE=$(iwctl station $DEVICE show | grep 'State' | awk '{print $2}')
+SSID=$(iwctl station $DEVICE show | grep 'Connected network' | awk '{print $3}')
+RSSI=$(iwctl station $DEVICE show | grep 'RSSI' | head -n1 | awk '{print $2}')
 
 if [ -z "$RSSI" ]; then
 	QUALITY=0
