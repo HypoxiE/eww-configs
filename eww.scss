@@ -89,15 +89,16 @@
     color: $text_color;
     border-radius: 20px;
 
+    border-width: 2px;
     border-style: solid;
     border-color: $text_color;
 
     padding: 0.5em 0.90em;
     transition: background-color 0.3s ease, color 0.3s ease;
 
-    &:hover {
-      background-color: $text_color;
-      color: $main_color;
-    }
+    //&:hover {
+    //  background-color: $text_color;
+    //  color: $main_color;
+    //}
   }
 }

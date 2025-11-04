@@ -30,8 +30,8 @@ for line in "${lines[@]}"; do
 	buttons+="
 	(button
 		:class \"dsk-button\"
-		:timeout \"1s\"
-		:onrightclick \"udiskie-umount $device && udiskie-umount -e $device && eww update disks_is_opened=false && eww close disks_bar\"
+		:timeout \"10s\"
+		:onrightclick \"udiskie-umount $device && udiskie-umount -e $device && sleep 1s && eww update disks_is_opened=false && eww close disks_bar\"
 		:onclick \"echo '$path' | wl-copy && eww update disks_is_opened=false && eww close disks_bar\"
 		\"$label\"
 	)

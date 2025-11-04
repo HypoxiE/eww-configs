@@ -1,4 +1,4 @@
-(defpoll disks :interval "1s" :initial "" "scripts/getusb")
+(defpoll disks :interval "100ms" :initial "" "scripts/getusb")
 
 (defwindow disks_bar
 	:monitor 0
@@ -9,7 +9,10 @@
 						:height "0px"
 						:anchor "top center")
 	:stacking "overlay"
-	(box :class "disks-pannel"
-		(literal :content disks)
+	(eventbox
+		:onhoverlost "eww update disks_is_opened=false && eww close disks_bar"
+		(box :class "disks-pannel"
+			(literal :content disks)
+		)
 	)
 )
