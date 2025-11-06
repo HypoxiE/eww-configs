@@ -12,8 +12,7 @@
 (defwidget metrics []
 	(box :orientation "h"
 		:halign "start"
-		:spacing 0
-		:space-evenly false
+		:spacing 5
 		(eventbox :onclick "eww ${disks_is_opened == false ? 'open' : 'close'} disks_bar && eww update disks_is_opened=${disks_is_opened == true ? false : true}"
 			(overlay
 				(icon_and_bg :symbol "")
@@ -24,10 +23,10 @@
 			(icon_and_bg :symbol "")
 			(circular-progress :class "memory-circular" :value {EWW_RAM.used_mem_perc} :thickness 5 :width 40 :start-at 75)
 		)
-		{ battery_show==true ? `(overlay
-			(icon_and_bg :symbol { EWW_BATTERY.BATT.status == 'Charging' ? '' : ''})
+		(overlay
+			(icon_and_bg :symbol {battery_show==true ? "${EWW_BATTERY.BATT.status == 'Charging' ? '' : ''}" : ''})
 			(circular-progress :class "memory-circular" :value {battery_show==true ? EWW_BATTERY.BATT.capacity : 100} :thickness 5 :width 40 :start-at 75)
-		)` : ``}
+		)
 		(overlay
 			(icon_and_bg :symbol "${wifi.state == 'connected' ? '' : ''}")
 			(circular-progress :class "memory-circular" :value {wifi.quality} :tooltip "${wifi.ssid}" :thickness 5 :width 40 :start-at 75)
