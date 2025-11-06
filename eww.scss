@@ -59,7 +59,7 @@
   .memory-circular
   {
     color: $text_color;
-    background-color: $secondary_color;
+    background-color: rgba($color: #000000, $alpha: 0);
     border-radius: 10px;
   }
 

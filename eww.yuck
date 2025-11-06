@@ -42,7 +42,6 @@
 						:width "0%"
 						:height "50px"
 						:anchor "top center")
-	:reserve (struts :side "top" :distance "4%")
 	:stacking "fg"
 	(box :class "mainbox" (metrics))
 )
