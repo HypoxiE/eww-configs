@@ -2,7 +2,7 @@
 
 (defwindow disks_bar
 	:monitor 0
-	:windowtype "dock"
+	:windowtype "dialog"
 	:geometry (geometry :x "0%"
 						:y "60px"
 						:width "10%"
@@ -10,7 +10,10 @@
 						:anchor "top center")
 	:stacking "overlay"
 	(eventbox
+		;:active true
+		;:ondropped "eww update disks_is_opened=false && eww close disks_bar"
 		:onhoverlost "eww update disks_is_opened=false && eww close disks_bar"
+		;:focusable "ondemand"
 		(box :class "disks-pannel"
 			(literal :content disks)
 		)
