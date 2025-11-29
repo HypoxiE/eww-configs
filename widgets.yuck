@@ -3,7 +3,7 @@
 (defwidget time []
 	(box :orientation "h"
 		(box :class "time"
-			:width 110
+			:width 130
 			(label :text time)
 		)
 	)
