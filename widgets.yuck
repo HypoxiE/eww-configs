@@ -28,7 +28,7 @@
 			(circular-progress :class "memory-circular" :value {battery_show==true ? EWW_BATTERY.BATT.capacity : 100} :thickness 5 :width 40 :start-at 75)
 		)
 		(overlay
-			(icon_and_bg :symbol "${wifi.state == 'connected' ? '' : ''}")
+			(icon_and_bg :symbol "${wifi.state == 'connected' ? '' : ''}")
 			(circular-progress :class "memory-circular" :value {wifi.quality} :tooltip "${wifi.ssid}" :thickness 5 :width 40 :start-at 75)
 		)
 	)
