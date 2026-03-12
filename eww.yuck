@@ -33,7 +33,7 @@
 	(box :class "mainbox" (workspaces))
 )
 
-(defwindow metrics_bar
+(defwindow metrics_laptop_bar
 	:monitor 0
 	:windowtype "dock"
 	:geometry (geometry :x "0%"
@@ -42,7 +42,19 @@
 						:height "50px"
 						:anchor "top center")
 	:stacking "fg"
-	(box :class "mainbox" (metrics))
+	(box :class "mainbox" (metrics_laptop))
+)
+
+(defwindow metrics_pc_bar
+	:monitor 0
+	:windowtype "dock"
+	:geometry (geometry :x "0%"
+						:y "0px"
+						:width "0%"
+						:height "50px"
+						:anchor "top center")
+	:stacking "fg"
+	(box :class "mainbox" (metrics_pc))
 )
 
 
