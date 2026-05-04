@@ -7,6 +7,9 @@
 (defpoll wifi :interval "1s" :initial '{"state": "disconnected", "ssid": "", "rssi": -100, "quality": 0}'
   "scripts/getnetwork")
 
+(defpoll lang :interval "100ms" :initial 'En'
+  "hyprctl -j devices | jq -r '.keyboards[] | select(.name | test(\"at-translated|keychron\"; \"i\")) | .active_keymap' | head -n 1 | cut -c1-2")
+
 (defvar active_workspace 1)
 
 (defvar disks_is_opened false)

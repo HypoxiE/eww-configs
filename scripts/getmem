@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 memory_percent=$(free | awk 'NR==2{printf "%.0f", ($3)/$2 * 100}')
 

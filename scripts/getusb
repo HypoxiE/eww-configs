@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 DEVICES=$(udiskie-info -a -o "{{\"device\": \"{device_presentation}\", \"mounted\": {is_mounted}, \"label\": \"{id_label}\", \"paths\": \"{mount_path}\"}}" | grep "\"mounted\": True") 
 

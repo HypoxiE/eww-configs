@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 if command -v pactl &>/dev/null; then
     # Получаем состояние mute и громкость

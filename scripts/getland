@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+keyboard_lang=$(hyprctl -j devices | jq -r '.keyboards[] | select(.name | test("at-translated|keychron"; "i")) | .active_keymap' | head -n 1)
+
+echo $keyboard_lang

@@ -67,7 +67,13 @@
 						:height "50px"
 						:anchor "top right")
 	:stacking "fg"
-	(box :class "mainbox" (time))
+	(box :spacing 10 :space-evenly false
+		; :class {lang == 'Ru' ? 'mainbox mainbox-ru-lang' : 'mainbox'}
+		:class "mainbox"
+		(label :text lang)
+		(label :text "|")
+		(time)
+	)
 )
 
 

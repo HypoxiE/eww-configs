@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 DEVICE=$(iwctl device list | grep wlan | awk '{print $2; exit}')
 
